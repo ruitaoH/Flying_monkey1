@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.custom.i18n.resources" value="messageResource"/>
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+
+    <!--允许上传的最大照片2M,这是KB为单位,1024 * 1024 * 2-->
+    <constant name="struts.multipart.maxSize" value="2097152" />
+
+    <!--项目正式开始-->
+    <!--登陆登出-->
+    <package name="log" namespace="/log" extends="struts-default">
+        <action name="login" class="com.hrt.action.LoginAction" method="login">
+            <!--登陆成功跳转到首页-->
+            <result>
+                /index.jsp
+            </result>
+
+            <!--登陆失败带着错误信息回到登陆页面-->
+            <result name="input">
+                /WEB-INF/jsp/login.jsp
+            </result>
+        </action>
+
+        <!--注销用户-->
+        <action name="logout" class="com.hrt.action.LogoutAction" method="logout">
+            <!--注销成功回到首页-->
+            <result>
+                /index.jsp
+            </result>
+        </action>
+    </package>
+
+    <!--注册-->
+    <package name="register" namespace="/register" extends="struts-default">
+        <!--响应注册结果-->
+        <action name="register" class="com.hrt.action.RegisterAction">
+            <!--成功跳转到主页-->
+            <result>
+                /index.jsp
+            </result>
+
+            <!--注册先不考虑失败-->
+            <!--数据失败带着错误信息回到注册页面-->
+            <result name="error">
+                /WEB-INF/jsp/register.jsp
+            </result>
+        </action>
+    </package>
+
+    <!--检测是否登陆-->
+    <package name="checklogin" namespace="/checklogin" extends="json-default">
+        <action name="checkPublish" class="com.hrt.action.CheckAction" method="check">
+            <!--成功跳转到发布界面-->
+            <result>
+                /WEB-INF/jsp/issue.jsp
+            </result>
+
+            <!--失败跳转到登陆界面-->
+            <result name="error">
+                /WEB-INF/jsp/login.jsp
+            </result>
+        </action>
+
+        <action name="checkPersonal" class="com.hrt.action.CheckAction" method="check">
+            <!--成功跳转到个人中心界面-->
+            <result>
+                /WEB-INF/jsp/personCenter.jsp
+            </result>
+
+            <!--失败跳转到登陆界面-->
+            <result name="error">
+                /WEB-INF/jsp/login.jsp
+            </result>
+        </action>
+
+        <action name="checkTry" class="com.hrt.action.CheckAction" method="checkTry">
+            <!--成功返回一个json给前端来通知弹框-->
+            <!--可不可以做成成功什么都不做???-->
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+
+            <!--失败跳转到登陆界面-->
+            <result name="error">
+                /WEB-INF/jsp/login.jsp
+            </result>
+        </action>
+    </package>
+
+    <!--发布项目-->
+    <package name="publish" namespace="/publish" extends="struts-default">
+        <!--发布项目-->
+        <action name="publish" class="com.hrt.action.PublishAction">
+            <!--拦截器接收图片-->
+            <!--限制图片的格式和大小-->
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    image/bmp,image/gif,image/jpeg,image/jpg,image/png
+                </param>
+                <param name="maximumSize">
+                    2097152
+                </param>
+            </interceptor-ref>
+            <!--默认的拦截器-->
+            <interceptor-ref name="defaultStack" />
+            <!--拦截器进行数据验证-->
+
+            <!--返回是否是ok－－－>然后前端显示发布成功-->
+            <!--<result type="json">-->
+                <!--<param name="root">responseJson</param>-->
+            <!--</result>-->
+            <!--方便演示先回到首页-->
+            <result>
+                /index.jsp?responseJson='success'
+            </result>
+
+            <!--???发布有没有可能失败-->
+            <result name="input">
+                /WEB-INF/jsp/issue.jsp
+            </result>
+        </action>
+    </package>
+
+    <!--首页数据-->
+    <package name="indexData" namespace="/" extends="json-default">
+        <action name="indexData" class="com.hrt.action.DataAction">
+            <result type="json" />
+        </action>
+    </package>
+
+    <!--响应点击首页某个框然后到物品界面-->
+    <package name="commodity" namespace="/commodity" extends="struts-default">
+        <action name="commodity" class="com.hrt.action.CommodityAction">
+            <result>
+                /WEB-INF/jsp/details.jsp
+            </result>
+            <!--失败跳转到首页-->
+            <result name="error">
+                /index.jsp
+            </result>
+        </action>
+    </package>
+
+    <!--发出尝试申请-->
+    <package name="try" namespace="/try" extends="json-default">
+        <action name="try" class="com.hrt.action.TryAction">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+    </package>
+
+    <package name="personal" namespace="/personal" extends="json-default">
+        <action name="personal" class="com.hrt.action.PersonalAction">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="apply">
+            <result>
+                /WEB-INF/jsp/myApply.jsp
+            </result>
+        </action>
+
+        <action name="receive">
+            <result>
+                /WEB-INF/jsp/myReservation.jsp
+            </result>
+        </action>
+    </package>
+    
+    <!--这里要处置 我申请的 和 我收到的申请-->
+    <package name="personalData" namespace="/personalData" extends="json-default">
+        <action name="applyData" class="com.hrt.action.ApplyData">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="receiveData" class="com.hrt.action.ReceiveData">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+    </package>
+    
+    <!--各种页面跳转-->
+    <package name="forword" namespace="/forword" extends="struts-default">
+        <action name="toRegister">
+            <result>
+                /WEB-INF/jsp/register.jsp
+            </result>
+        </action>
+
+        <action name="toHelp">
+            <result>
+                /WEB-INF/jsp/help.jsp
+            </result>
+        </action>
+    </package>
+    
+    <package name="change" namespace="/change" extends="struts-default">
+        <action name="publish" class="com.hrt.action.PublishChange" method="delete">
+            <result>
+                /WEB-INF/jsp/personCenter.jsp
+            </result>
+
+            <result name="error">
+
+            </result>
+        </action>
+
+        <action name="apply" class="com.hrt.action.ApplyChange" method="delete">
+            <result>
+                /WEB-INF/jsp/myApply.jsp
+            </result>
+
+            <result name="error">
+
+            </result>
+        </action>
+
+        <!--receive_agree receive_refuse-->
+        <action name="receive_agree" class="com.hrt.action.ReceiveChange" method="agree">
+            <result>
+                /WEB-INF/jsp/myReservation.jsp
+            </result>
+
+            <result name="error">
+
+            </result>
+        </action>
+        <action name="receive_refuse" class="com.hrt.action.ReceiveChange" method="refuse">
+            <result>
+                /WEB-INF/jsp/myReservation.jsp
+            </result>
+
+            <result name="error">
+
+            </result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="user" class="com.hrt.domain.User">-->
+    <!--</bean>-->
+
+    <!--<bean id="commodity" class="com.hrt.domain.Commodity">-->
+    <!--</bean>-->
+
+    <!--<bean id="try" class="com.hrt.domain.Try">-->
+    <!--</bean>-->
+
+    <bean id="userService" class="com.hrt.service.UserService">
+    </bean>
+
+    <bean id="commodityService" class="com.hrt.service.CommodityService">
+    </bean>
+
+    <bean id="tryService" class="com.hrt.service.TryService">
+    </bean>
+
+</beans>

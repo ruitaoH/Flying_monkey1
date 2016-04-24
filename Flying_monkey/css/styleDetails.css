@@ -1,0 +1,286 @@
+﻿.container {
+    margin-top: 40px;
+    width: 100%;
+}
+
+#back {
+    display: block;
+    color: rgb(203, 22, 3);
+    position: absolute;
+    height: 100%;
+    left: 3%;
+    top: 0;
+    line-height: 40px;
+}
+
+.user {
+    height: 45px;
+    width: 100%;
+    padding-left: 50px;
+    line-height: 45px;
+    color: #333333;
+    position: relative;
+}
+
+.user-logo {
+    display: block;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: rgb(203, 22, 3);
+    overflow: hidden;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -12.5px;
+}
+
+.user-logo img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.time {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    font-size: 0.6rem;
+}
+
+.image {
+    width: 100%;
+    position: relative;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-name small {
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.img-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.img-mask span {
+    display: block;
+    width: 105px;
+    position: absolute;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.img-mask span:first-child {
+    background: url('../images/icons.png') no-repeat -212px -319px;
+    left: 50%;
+    top: 20%;
+}
+
+.img-mask span:last-child {
+    background: url('../images/icons.png') no-repeat -22px -468px;
+    left: 20%;
+    top: 60%;
+}
+
+.something {
+    padding: 36px 24px;
+    position: relative;
+    border-bottom: 2px solid #999999;
+}
+
+.type {
+    display: block;
+    line-height: 22px;
+    padding: 0 8px;
+    border-radius: 11px;
+    background-color: rgb(203, 22, 3);
+    color: #ffffff;
+    margin: 5px 0 15px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 6px;
+    left: 14px;
+}
+
+.name {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    font-size: 1rem;
+    color: #333333;
+    width: 100%;
+    text-align: center;
+}
+
+.main-info {
+    color: #999999;
+    line-height: 16px;
+    font-size: 0.9rem;
+}
+
+.price {
+    display: block;
+    padding-left: 30px;
+    position: absolute;
+    line-height: 30px;
+    right: 30px;
+    bottom: 5px;
+}
+
+.price span {
+    display: block;
+    height: 25px;
+    width: 30px;
+    position: absolute;
+    top: 2.5px;
+    left: 0;
+    background: url('../images/icons.png') no-repeat -158px -187px;
+}
+
+.try {
+    width: 100%;
+    color: #666666;
+}
+
+.try h4 {
+    line-height: 32px;
+    text-indent: 0.5em;
+    font-size: 1.15rem;
+    border-bottom: 1px solid #999999;
+    position: relative;
+}
+
+.try span {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    line-height: 32px;
+    font-size: 0.6rem;
+}
+
+.try p {
+    padding: 3% 5%;
+    line-height: 18px;
+    font-size: 0.85rem;
+}
+
+#reserver-button {
+    line-height: 34px;
+    width: 100px;
+    text-align: center;
+    border-radius: 8px;
+    color: #ffffff;
+    background-color: rgb(203, 22, 3);
+    margin: 0 auto;
+}
+
+/*  申请表单  */
+#reserverForm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#reserverForm form {
+    width: 90%;
+    height: 260px;
+    position: absolute;
+    top: 50%;
+    border: 2px solid rgb(203, 22, 3);
+    border-radius: 10px;
+    margin: -130px 0 0 0;
+    padding: 3% 5%;
+    background-color: #ffffff;
+}
+
+#close {
+    position: absolute;
+    width: 30px;
+    height: 25px;
+    top: 0;
+    right: 15px;
+    background-color: rgb(170, 170, 170);
+    border-radius: 0 0 15px 15px;
+    z-index: 1000;
+}
+
+#close span {
+    height: 3px;
+    width: 16px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    transform-origin: center center;
+    position: absolute;
+    top: 40%;
+    margin-top: -1.5px;
+    left: 7px;
+}
+
+#close span:first-child {
+    transform: rotateZ(45deg);
+}
+
+#close span:last-child {
+    transform: rotateZ(-45deg);
+}
+
+#reserverForm label {
+    width: 100%;
+    display: block;
+    line-height: 30px;
+    color: rgb(203, 22, 3);
+    position: relative;
+    text-align: center;
+}
+
+#reserverForm label p {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#reserverForm textarea {
+    border-radius: 8px;
+    border: 1px solid rgb(170, 170, 170);
+    padding: 8px;
+    font-size: 0.75rem;
+    color: #666666;
+    margin-left: 70px;
+    height: 120px;
+    width: 70%;
+}
+
+#reserverForm label span {
+    position: absolute;
+    bottom: -14px;
+    line-height: 14px;
+    font-size: 0.6rem;
+    right: 0;
+}
+
+#reserver-btn {
+    background-color: rgb(203, 22, 3);
+    color: #ffffff;
+    border-radius: 8px;
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    margin: 40px auto 0;
+}
