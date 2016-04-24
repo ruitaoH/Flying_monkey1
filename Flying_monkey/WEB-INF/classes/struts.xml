@@ -119,7 +119,7 @@
             <!--</result>-->
             <!--方便演示先回到首页-->
             <result>
-                /index.jsp?responseJson='success'
+                /index.jsp
             </result>
 
             <!--???发布有没有可能失败-->
